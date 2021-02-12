@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  line-height: 1.4;
+  overflow-x: hidden;
+  font-family: $main-font;
+  font-size: 1.6rem;
+}
+
+.main-wrapper {
+  width: 100%;
+  max-width: 145rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}

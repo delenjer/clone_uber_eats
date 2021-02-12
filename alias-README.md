@@ -12,9 +12,9 @@ nano ~/scripts/create-component.sh
 mkdir "$(pwd)/src/components/${1}"
 touch "$(pwd)/src/components/${1}/${1}.js"
 touch "$(pwd)/src/components/${1}/${1}.scss"
-touch "$(pwd)/src/components/${1}/index.js"
+touch "$(pwd)/src/components/${1}/index.tsx"
 
-echo "export * from './${1}';" >> "$(pwd)/src/components/${1}/index.js"
+echo "export * from './${1}';" >> "$(pwd)/src/components/${1}/index.tsx"
 ```
 3. `Ctrl+O`, then `Enter` to save; `Ctrl+X` - to exit
 4. Add alias to bash profile(run following commands)
