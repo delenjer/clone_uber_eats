@@ -3,9 +3,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { createSelector } from 'reselect';
 
-import restaurantsReducer, *as selectorsRestaurants from './restaurantsReducer/index';
+import { IState } from "../interface/interface";
 
-const getRestaurants = (state: any) => selectorsRestaurants.getRestaurants(state.restaurants);
+import restaurantsReducer, *as selectorsRestaurants from './restaurantsReducer/index';
+import loadingRestaurantsReducer, *as selectorsLoadingRestaurants from './loadingRestaurantsReducer/index';
+
+const getRestaurants = (state: IState) => selectorsRestaurants.getRestaurants(state.restaurants);
+export const isLoadingRestaurants = (state: IState) => selectorsLoadingRestaurants
+  .isLoadingRestaurants(state.isLoadingRestaurants);
 
 export const getRestaurantsMemo = createSelector(
   getRestaurants,
@@ -24,6 +29,7 @@ export const getRestaurantsMemo = createSelector(
 
 const rootReducer = combineReducers({
   restaurants: restaurantsReducer,
+  isLoadingRestaurants: loadingRestaurantsReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(

@@ -13,19 +13,19 @@ export const Header = () => (
       <div className="header__services">
         <div className="header__services--col">
           <div className="header__service">
-            <div className="location">
-              <div className="location__marker">
+            <button type="button" className="delivery-info location">
+              <div className="delivery-info__marker">
                 <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9.99184 24C9.99184 24 0 15.5265 0 9.99184C0 4.48163 4.45714 0 9.99184 0C15.5265 0 19.9837 4.48163 19.9837 9.99184C19.9837 15.5265 9.99184 24 9.99184 24ZM9.99184 2.00816C5.58367 2.00816 1.98367 5.58367 1.98367 10.0163C1.98367 14.4245 9.99184 21.0122 9.99184 21.0122C9.99184 21.0122 18 14.4245 18 10.0163C18 5.58367 14.4 2.00816 9.99184 2.00816ZM9.99184 14.0082C7.78776 14.0082 6 12.2204 6 10.0163C6 7.81225 7.78776 6 9.99184 6C12.1959 6 13.9837 7.78776 13.9837 9.99184C13.9837 12.1959 12.1959 14.0082 9.99184 14.0082ZM9.99184 8.00816C8.8898 8.00816 7.98367 8.91429 7.98367 10.0163C7.98367 11.1184 8.8898 12 9.99184 12C11.0939 12 12 11.0939 12 9.99184C12 8.8898 11.0939 8.00816 9.99184 8.00816Z" fill="black"/>
                 </svg>
               </div>
 
-              <p className="location__text">
+              <p className="delivery-info__text">
                 London
               </p>
-            </div>
+            </button>
 
-            <div className="delivery-info">
+            <button type="button" className="delivery-info delivery-box">
               <div className="delivery-info__marker">
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M11 0C8.82441 0 6.69767 0.645139 4.88873 1.85383C3.07979 3.06253 1.66989 4.78049 0.83733 6.79048C0.00476614 8.80047 -0.21307 11.0122 0.211367 13.146C0.635804 15.2798 1.68345 17.2398 3.22183 18.7782C4.76021 20.3165 6.72022 21.3642 8.85401 21.7886C10.9878 22.2131 13.1995 21.9952 15.2095 21.1627C17.2195 20.3301 18.9375 18.9202 20.1462 17.1113C21.3549 15.3023 22 13.1756 22 11C22 8.08262 20.8411 5.28472 18.7782 3.22182C16.7153 1.15892 13.9174 0 11 0V0ZM11 20.1667C9.18701 20.1667 7.41473 19.629 5.90728 18.6218C4.39983 17.6146 3.22491 16.1829 2.53111 14.5079C1.83731 12.8329 1.65577 10.9898 2.00947 9.21167C2.36317 7.43351 3.23621 5.80017 4.51819 4.51819C5.80017 3.23621 7.43352 2.36317 9.21167 2.00947C10.9898 1.65577 12.8329 1.8373 14.5079 2.5311C16.1829 3.22491 17.6146 4.39982 18.6218 5.90727C19.629 7.41472 20.1667 9.187 20.1667 11C20.164 13.4303 19.1974 15.7604 17.4789 17.4789C15.7604 19.1974 13.4303 20.164 11 20.1667Z" fill="black"/>
@@ -33,22 +33,29 @@ export const Header = () => (
                 </svg>
               </div>
 
-              <p className="location__text">
+              <p className="delivery-info__text">
                 Deliver now
               </p>
-            </div>
+            </button>
+          </div>
+        </div>
 
-            <div className="header__services--col">
-              <div className="header__service">
-                <form className="search">
-                  <label className="search__title">Search</label>
-                  <input className="search__input" type="text" placeholder="search"/>
-                </form>
+        <div className="header__services--col">
+          <div className="header__service">
+            <form className="search">
+              <input name="search" id="search" className="search__input" type="text" placeholder="search"/>
 
-                <div className="sign-box">
-                  Sign in
-                </div>
-              </div>
+              <label htmlFor="search" className="search__title">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.9217 11.0417L15 15M12.8788 6.76471C12.8788 9.94847 10.2196 12.5294 6.93939 12.5294C3.65916 12.5294 1 9.94847 1 6.76471C1 3.58095 3.65916 1 6.93939 1C10.2196 1 12.8788 3.58095 12.8788 6.76471Z" stroke="black" stroke-width="2"/>
+                </svg>
+
+                <span className="search__title--text">Search</span>
+              </label>
+            </form>
+
+            <div className="sign-box">
+              <button type="button" className="sign-btn btn">Sign in</button>
             </div>
           </div>
         </div>

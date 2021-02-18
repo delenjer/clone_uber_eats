@@ -1,0 +1,19 @@
+@import "varible";
+
+.delivery-info {
+  display: flex;
+  align-items: center;
+  color: $common-text-color;
+  border: none;
+  background: inherit;
+  cursor: pointer;
+  font-size: 1.6rem;
+
+  &:not(:last-of-type) {
+    margin-right: 6rem;
+  }
+
+  &__marker {
+    margin-right: 1rem;
+  }
+}

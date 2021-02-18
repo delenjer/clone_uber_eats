@@ -1,5 +1,5 @@
 import { SET_RESTAURANTS } from './action';
-import { IAction } from '../../interface/interface';
+import {IAction } from '../../interface/interface';
 
 export const getRestaurants = (state: any) => state;
 
