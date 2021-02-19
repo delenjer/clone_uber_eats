@@ -8,21 +8,22 @@ import { IState } from "../interface/interface";
 import restaurantsReducer, *as selectorsRestaurants from './restaurantsReducer/index';
 import loadingRestaurantsReducer, *as selectorsLoadingRestaurants from './loadingRestaurantsReducer/index';
 
-const getRestaurants = (state: IState) => selectorsRestaurants.getRestaurants(state.restaurants);
+export const getRestaurants = (state: IState) => selectorsRestaurants.getRestaurants(state.restaurants);
 export const isLoadingRestaurants = (state: IState) => selectorsLoadingRestaurants
   .isLoadingRestaurants(state.isLoadingRestaurants);
 
 export const getRestaurantsMemo = createSelector(
   getRestaurants,
   (restaurants) => {
-    const { data } = restaurants;
+    //@ts-ignore
+    // const { initItems, addedItems } = restaurants;
+    const { data } = restaurants.restaurants;
 
     if (!data) {
       return [];
     }
 
     const { feedItems, storesMap } = data;
-
     return feedItems.map(({ uuid }: any) => storesMap[uuid]);
   }
 );

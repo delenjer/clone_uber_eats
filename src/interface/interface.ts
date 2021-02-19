@@ -8,6 +8,7 @@ export interface IAction {
   restaurants: any;
   type: string;
   isLoading: boolean,
+  num: number,
 }
 
 export interface IRestaurants {
