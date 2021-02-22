@@ -53,8 +53,8 @@ export const RestaurantsList: React.FC = () => {
                 </p>
               }
             >
-              <section className="restaurant">
-                <ul className="restaurant__list">
+              <section className="restaurants">
+                <ul className="restaurants__list">
                   {
                     restaurants.map((restaurant: IRestaurants) => (
                       <RestaurantsItem key={restaurant.uuid} restaurant={restaurant} />

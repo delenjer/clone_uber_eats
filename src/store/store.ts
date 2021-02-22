@@ -7,16 +7,16 @@ import { IState } from "../interface/interface";
 
 import restaurantsReducer, *as selectorsRestaurants from './restaurantsReducer/index';
 import loadingRestaurantsReducer, *as selectorsLoadingRestaurants from './loadingRestaurantsReducer/index';
+import restaurantPageReducer, *as selectorsRestaurantPageReducer from './restaurantPageReducer/index';
 
 export const getRestaurants = (state: IState) => selectorsRestaurants.getRestaurants(state.restaurants);
+const getRestaurant = (state: IState) => selectorsRestaurantPageReducer.getRestaurant(state.restaurant);
 export const isLoadingRestaurants = (state: IState) => selectorsLoadingRestaurants
   .isLoadingRestaurants(state.isLoadingRestaurants);
 
 export const getRestaurantsMemo = createSelector(
   getRestaurants,
   (restaurants) => {
-    //@ts-ignore
-    // const { initItems, addedItems } = restaurants;
     const { data } = restaurants.restaurants;
 
     if (!data) {
@@ -28,9 +28,23 @@ export const getRestaurantsMemo = createSelector(
   }
 );
 
+export const getRestaurantMemo = createSelector(
+  getRestaurant,
+  (restaurant) => {
+    const { data } = restaurant;
+
+    if (!data) {
+      return [];
+    }
+
+    return data;
+  }
+);
+
 const rootReducer = combineReducers({
   restaurants: restaurantsReducer,
   isLoadingRestaurants: loadingRestaurantsReducer,
+  restaurant: restaurantPageReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(
