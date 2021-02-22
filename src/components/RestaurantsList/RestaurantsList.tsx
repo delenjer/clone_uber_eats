@@ -32,7 +32,7 @@ export const RestaurantsList: React.FC = () => {
 
     setTimeout(() => {
       dispatch(setItems(restaurantsOptions.addedItems + 8));
-    }, 1000);
+    }, 500);
   }
 
   return (
