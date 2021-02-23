@@ -1,16 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export const RestaurantItem:React.FC<any> = ({ restaurantMenu }) => {
-  console.log(restaurantMenu);
+export const RestaurantItem:React.FC<any> = ({ restaurantMenu, handleGetItemId }) => (
+  <li className="restaurant__item">
+    <h2 className="restaurant__title">{restaurantMenu.title}</h2>
 
-  return (
-    <li className="restaurant__item">
-      <h2 className="restaurant__title">{restaurantMenu.title}</h2>
-
+    <section className="card-container">
       {
         restaurantMenu.itemUuids.map((itemUuid: any) => (
-          <article key={itemUuid.uuid} className="card">
-            <div className="card__col">
+          <Link
+            to="/" key={itemUuid.uuid}
+            className="card"
+            onClick={(e) => handleGetItemId(e, itemUuid.uuid)}
+          >
+            <div className="card__col card__col--content">
               <h3 className="card__title">{itemUuid.title}</h3>
 
               <p className="card__description">
@@ -18,16 +21,16 @@ export const RestaurantItem:React.FC<any> = ({ restaurantMenu }) => {
               </p>
 
               <p className="card__price">
-                {itemUuid.price}
+                {`£ ${(parseFloat(itemUuid.price) / 100).toFixed(2)}`}
               </p>
             </div>
 
             <div className="card__col">
-              <img src={itemUuid.imageUrl} alt={itemUuid.title}/>
+              <img className="card__img" src={itemUuid.imageUrl} alt={itemUuid.title}/>
             </div>
-          </article>
+          </Link>
         ))
       }
-    </li>
-  );
-}
+    </section>
+  </li>
+);

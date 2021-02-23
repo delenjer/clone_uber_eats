@@ -1,0 +1,41 @@
+@import "varible";
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(34.8rem, 1fr));
+  grid-gap: 4rem 2rem;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  margin-top: 2rem;
+  color: $main-text-color;
+  text-decoration: none;
+
+  &__col {
+    &--content {
+      padding: 1.6rem 0 1.6rem 1.6rem;
+    }
+  }
+
+  &__description {
+    font-size: 1.2rem;
+    color: #626262;
+    margin-top: 0.4rem;
+  }
+
+  &__price {
+    margin-top: 1.7rem;
+  }
+
+  &__img {
+    display: block;
+    width: 158px;
+    height: 158px;
+    object-fit: cover;
+    margin-left: 1.6rem;
+  }
+}

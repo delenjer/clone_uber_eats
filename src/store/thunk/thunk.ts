@@ -1,7 +1,8 @@
 import { setRestaurants } from '../restaurantsReducer/action';
 import { setLoadingRestaurants } from '../loadingRestaurantsReducer/action';
-import { setRestaurant } from '../../store/restaurantPageReducer/action';
-import { getRestaurants, getRestaurant } from '../../api/api';
+import { setRestaurant } from '../restaurantPageReducer/action';
+import { setMenuItems } from '../restaurantMenuItemsReducer/action';
+import { getRestaurants, getRestaurant, getMenuItems } from '../../api/api';
 
 export const loadingRestaurants = () => {
   return (dispatch: (arg: { type: string }) => void) => {
@@ -21,6 +22,14 @@ export const loadingRestaurant = (uuid: string) => {
       dispatch(await setRestaurant(data));
 
       dispatch(setLoadingRestaurants(false));
+    })
+  }
+}
+
+export const loadingMenuItems = (uuid: string) => {
+  return (dispatch: (arg: { type: string }) => void) => {
+    getMenuItems(uuid).then(async data => {
+      dispatch(await setMenuItems(data));
     })
   }
 }

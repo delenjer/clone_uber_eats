@@ -3,6 +3,7 @@ export interface IState {
   restaurants: IRestaurants;
   isLoadingRestaurants: boolean;
   restaurant: IRestaurant;
+  menuItems: any;
 }
 
 export interface IAction {

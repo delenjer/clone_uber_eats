@@ -8,11 +8,13 @@ import { IState } from "../interface/interface";
 import restaurantsReducer, *as selectorsRestaurants from './restaurantsReducer/index';
 import loadingRestaurantsReducer, *as selectorsLoadingRestaurants from './loadingRestaurantsReducer/index';
 import restaurantPageReducer, *as selectorsRestaurantPageReducer from './restaurantPageReducer/index';
+import restaurantMenuItemsReducer, *as selectorsMenuItems from './restaurantMenuItemsReducer/index';
 
 export const getRestaurants = (state: IState) => selectorsRestaurants.getRestaurants(state.restaurants);
 const getRestaurant = (state: IState) => selectorsRestaurantPageReducer.getRestaurant(state.restaurant);
 export const isLoadingRestaurants = (state: IState) => selectorsLoadingRestaurants
   .isLoadingRestaurants(state.isLoadingRestaurants);
+export const getMenuItems = (state: IState) => selectorsMenuItems.getMenuItems(state.menuItems);
 
 export const getRestaurantsMemo = createSelector(
   getRestaurants,
@@ -45,6 +47,7 @@ const rootReducer = combineReducers({
   restaurants: restaurantsReducer,
   isLoadingRestaurants: loadingRestaurantsReducer,
   restaurant: restaurantPageReducer,
+  menuItems: restaurantMenuItemsReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(

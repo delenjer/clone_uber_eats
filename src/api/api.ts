@@ -10,3 +10,6 @@ export const getRestaurants = () => API.get('restaurants?location=d2c8cd41-8970-
 
 export const getRestaurant = (uuid: string) => API.get(`restaurants/${uuid}`)
   .then(response => response.data);
+
+export const getMenuItems = (uuid: string) => API.get(`menu-items/${uuid}`)
+  .then(response => response.data);
