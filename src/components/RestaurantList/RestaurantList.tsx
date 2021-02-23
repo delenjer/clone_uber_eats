@@ -6,26 +6,27 @@ import { loadingMenuItems } from '../../store/thunk/thunk';
 import { IState } from '../../interface/interface';
 import * as selectors from "../../store/store";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
+import { MenuItemModalContent } from "../MenuItemModalContent/MenuItemModalContent";
 
 export const RestaurantList:React.FC<any> = ({ restaurant }) => {
-  const [menuItem, setMenuItem] = useState('');
+  const [menuItemId, setMenuItemId] = useState('');
   const [isOpen, setOpen] = useState(false);
-  const getMenuItems = useSelector((state: IState) => selectors.getMenuItems(state));
+  const menuItems = useSelector((state: IState) => selectors.getMenuItems(state));
   const dispatch = useDispatch();
   const { sections, sectionsMap, entitiesMap } = restaurant;
 
   useEffect(() => {
-    dispatch(loadingMenuItems(menuItem))
-  }, [menuItem]);
+    dispatch(loadingMenuItems(menuItemId))
+  }, [menuItemId]);
 
-  const handleGetItemId = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => {
+  const handleGetItemId = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string): void => {
     e.preventDefault();
 
-    setMenuItem(id);
+    setMenuItemId(id);
     setOpen(true);
   }
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setOpen(false);
   }
 
@@ -56,13 +57,9 @@ export const RestaurantList:React.FC<any> = ({ restaurant }) => {
       >
         <button className="close-modal" onClick={handleClose}>x</button>
 
-        <img src={getMenuItems.data && getMenuItems.data.imageUrl} alt="Img"/>
-
-        <h1>{getMenuItems.data && getMenuItems.data.title}</h1>
-
-        <p>
-          {getMenuItems.data && getMenuItems.data.itemDescription}
-        </p>
+        <MenuItemModalContent
+          menuItems={menuItems}
+        />
       </ModalWindow>
     </>
   );

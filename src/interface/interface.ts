@@ -3,7 +3,7 @@ export interface IState {
   restaurants: IRestaurants;
   isLoadingRestaurants: boolean;
   restaurant: IRestaurant;
-  menuItems: any;
+  menuItems: IMenuItems;
 }
 
 export interface IAction {
@@ -12,6 +12,7 @@ export interface IAction {
   type: string;
   isLoading: boolean,
   num: number,
+  items: IMenuItems;
 }
 
 export interface IRestaurants {
@@ -98,4 +99,17 @@ export interface IRestaurant {
     uuid: string;
     status: string;
   };
+}
+
+export interface IMenuItems {
+  data: {
+    itemDescription: string;
+    price: number;
+    sectionUuid: string;
+    subsectionUuid: string;
+    title: string;
+    uuid: string;
+    customizationsList: any[];
+    imageUrl: string;
+  }
 }
