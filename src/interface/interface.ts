@@ -109,7 +109,15 @@ export interface IMenuItems {
     subsectionUuid: string;
     title: string;
     uuid: string;
-    customizationsList: any[];
+    customizationsList: [{
+      maxPermitted:	number;
+      minPermitted:	number;
+      parentCustomizationOptionUuids:	any[];
+      title:	string;
+      uuid:	string;
+      displayState:	string;
+      options: any[];
+    }];
     imageUrl: string;
   }
 }

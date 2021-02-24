@@ -55,7 +55,7 @@ export const RestaurantList:React.FC<any> = ({ restaurant }) => {
       <ModalWindow
         isOpen={isOpen}
       >
-        <button className="close-modal" onClick={handleClose}>x</button>
+        <button className="close-modal" onClick={handleClose}><span className="icon-close"/></button>
 
         <MenuItemModalContent
           menuItems={menuItems}

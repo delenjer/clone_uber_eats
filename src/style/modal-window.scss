@@ -20,16 +20,13 @@
   min-height: 30vh;
   max-height: 90vh;
   background-color: #fff;
-  padding: 10px;
+  //padding: 10px;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .modal-body {
   position: relative;
-  //height: 90vh;
-  padding: 10px 10px 20px;
-  overflow-y: auto;
 }
 
 .active-modal {
@@ -38,6 +35,15 @@
 
 .close-modal {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2.4rem;
+  right: 2.4rem;
+  border: none;
+  background-color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: rotate(90deg);
+  }
 }
