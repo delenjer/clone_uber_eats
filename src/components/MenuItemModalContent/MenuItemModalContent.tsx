@@ -53,20 +53,24 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                         <div className="menu-modal__list-title-wrap">
                           <h3 className="menu-modal__list-title" style={{fontWeight: 'bold',}}>{item.title}</h3>
                           <p className="menu-modal__list-title--text">
-                            Choose up to 1
+                            Choose up to <span>{item.maxPermitted}</span>
                           </p>
                         </div>
 
                         <ul className="menu-modal__options-list">
                           {
                             item.options.map((option) => (
-                              <li className="menu-modal__options-item">
+                              <li key={option.uuid} className="menu-modal__options-item">
                                 {
-                                  <>
-                                    <h4>{option.title}</h4>
+                                  <form action="#" className="select-meal">
+                                    <label>
+                                      <input  type="checkbox"/>
 
-                                    <p>{`£ ${(parseFloat(String(option.price)) / 100).toFixed(2)}`}</p>
-                                  </>
+                                      {option.title}
+                                    </label>
+
+                                    <p>{`+£ ${(parseFloat(String(option.price)) / 100).toFixed(2)}`}</p>
+                                  </form>
                                 }
                               </li>
                             ))
@@ -79,9 +83,18 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
               }
             </ul>
 
-            <button type="button">
-              {`£ ${(parseFloat(String(data.price)) / 100).toFixed(2)}`}
-            </button>
+            <div className="menu-modal__footer">
+              <button
+                className="btn add-button"
+                type="button"
+              >
+                <span className="add-button--item">Add 1 to order</span>
+
+                <span className="add-button--item">
+                  {`£ ${(parseFloat(String(data.price)) / 100).toFixed(2)}`}
+                </span>
+              </button>
+            </div>
           </>
         )
       }

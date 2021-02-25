@@ -9,7 +9,10 @@ export const ModalWindow = (props: any) => {
   }, [props.isOpen]);
 
   return (
-    <div className={isActive ? 'active-modal modal-wrap' : 'modal-wrap'}>
+    <div
+      className={isActive ? 'active-modal modal-wrap' : 'modal-wrap'}
+      //onClick={props.isHideWrapModal}
+    >
       <ModalBody>
         {props.children}
       </ModalBody>

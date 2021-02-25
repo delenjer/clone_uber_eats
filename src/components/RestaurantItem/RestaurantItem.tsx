@@ -25,7 +25,7 @@ export const RestaurantItem:React.FC<any> = ({ restaurantMenu, handleGetItemId }
               </p>
             </div>
 
-            <div className="card__col">
+            <div className="card__col card__col--img-box">
               <img className="card__img" src={itemUuid.imageUrl} alt={itemUuid.title}/>
             </div>
           </Link>

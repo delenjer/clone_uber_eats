@@ -54,6 +54,7 @@ export const RestaurantList:React.FC<any> = ({ restaurant }) => {
 
       <ModalWindow
         isOpen={isOpen}
+        //isHideWrapModal={handleClose}
       >
         <button className="close-modal" onClick={handleClose}><span className="icon-close"/></button>
 

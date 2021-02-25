@@ -37,3 +37,24 @@ body {
   cursor: pointer;
   outline: none;
 }
+
+.add-button {
+  display: flex;
+  width: 100%;
+  max-width: 48.5rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #247a00;
+  padding: 1.6rem;
+  transition: opacity 0.3s;
+
+  &--item {
+    &:first-of-type {
+      flex-grow: 1;
+    }
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
