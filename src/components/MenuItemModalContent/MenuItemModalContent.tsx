@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // @ts-ignore
 import ReactHtmlParser from 'react-html-parser';
 
@@ -9,7 +9,11 @@ type Props = {
 }
 
 export const MenuItemModalContent = ({ menuItems }: Props) => {
+  const [valueRadio, setValueRadio] = useState('');
+
   const { data } = menuItems;
+
+  console.log(valueRadio);
 
   // const itemDescription = (): any => {
   //   const pattern = /(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/g;
@@ -64,7 +68,11 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                                 {
                                   <form action="#" className="select-meal">
                                     <label>
-                                      <input  type="checkbox"/>
+                                      <input
+                                        type={item.maxPermitted === 1 ? 'radio' : 'checkbox' }
+                                        value={`${(parseFloat(String(option.price)) / 100).toFixed(2)}`}
+                                        onChange={(e) => setValueRadio(e.target.value)}
+                                      />
 
                                       {option.title}
                                     </label>
