@@ -1,35 +1,23 @@
 import React, { useState } from 'react';
-// @ts-ignore
-import ReactHtmlParser from 'react-html-parser';
 
 import { IMenuItems } from '../../interface/interface';
+import { SelectMealForm } from "../SelectMealForm/SelectMealForm";
 
 type Props = {
   menuItems: IMenuItems;
 }
 
 export const MenuItemModalContent = ({ menuItems }: Props) => {
-  const [valueRadio, setValueRadio] = useState('');
-
+  //@ts-ignore
+  const [valueRadio, setValueRadio] = useState([]);
+  const [itemId, setItemId] = useState('');
   const { data } = menuItems;
 
-  console.log(valueRadio);
+  const sumMenuChoose = (initialPrice: string) => {
+    const sum = valueRadio.reduce((acc, num) => acc + Number(num), 0);
 
-  // const itemDescription = (): any => {
-  //   const pattern = /(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/g;
-  //
-  //   if(data) {
-  //     //@ts-ignore
-  //     return data.itemDescription.split(' ')
-  //       .map(item => {
-  //         if(pattern.test(item)) {
-  //           return ReactHtmlParser(<a href={'item'}>{item}</a>);
-  //         }
-  //
-  //         return item;
-  //       }).join('');
-  //   }
-  // }
+    return (sum + Number(initialPrice)).toFixed(2);
+  }
 
   return (
     <div className="menu-modal">
@@ -66,19 +54,14 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                             item.options.map((option) => (
                               <li key={option.uuid} className="menu-modal__options-item">
                                 {
-                                  <form action="#" className="select-meal">
-                                    <label>
-                                      <input
-                                        type={item.maxPermitted === 1 ? 'radio' : 'checkbox' }
-                                        value={`${(parseFloat(String(option.price)) / 100).toFixed(2)}`}
-                                        onChange={(e) => setValueRadio(e.target.value)}
-                                      />
-
-                                      {option.title}
-                                    </label>
-
-                                    <p>{`+£ ${(parseFloat(String(option.price)) / 100).toFixed(2)}`}</p>
-                                  </form>
+                                  <SelectMealForm
+                                    item={item}
+                                    option={option}
+                                    valueRadio={valueRadio}
+                                    setValueRadio={setValueRadio}
+                                    itemId={itemId}
+                                    setItemId={setItemId}
+                                  />
                                 }
                               </li>
                             ))
@@ -99,7 +82,7 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                 <span className="add-button--item">Add 1 to order</span>
 
                 <span className="add-button--item">
-                  {`£ ${(parseFloat(String(data.price)) / 100).toFixed(2)}`}
+                  {`£ ${sumMenuChoose(`${(parseFloat(String(data.price)) / 100).toFixed(2)}`)}`}
                 </span>
               </button>
             </div>
