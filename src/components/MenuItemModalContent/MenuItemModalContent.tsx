@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { IMenuItems } from '../../interface/interface';
-import { SelectMealForm } from "../SelectMealForm/SelectMealForm";
+import { MealList } from '../MealList/MealList';
 
 type Props = {
   menuItems: IMenuItems;
 }
 
 export const MenuItemModalContent = ({ menuItems }: Props) => {
-  //@ts-ignore
-  const [valueRadio, setValueRadio] = useState([]);
   const { data } = menuItems;
 
-  const sumMenuChoose = (initialPrice: string) => {
-    const sum = valueRadio.reduce((acc, num) => acc + Number(num), 0);
 
-    return (sum + Number(initialPrice)).toFixed(2);
-  }
+  // const sumMenuChoose = (initialPrice: string) => {
+  //   const sum = valueRadio.reduce((acc, num) => acc + Number(num), 0);
+  //
+  //   return (sum + Number(initialPrice)).toFixed(2);
+  // }
 
   return (
     <div className="menu-modal">
@@ -48,22 +47,7 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                           </p>
                         </div>
 
-                        <ul className="menu-modal__options-list">
-                          {
-                            item.options.map((option) => (
-                              <li key={option.uuid} className="menu-modal__options-item">
-                                {
-                                  <SelectMealForm
-                                    item={item}
-                                    option={option}
-                                    valueRadio={valueRadio}
-                                    setValueRadio={setValueRadio}
-                                  />
-                                }
-                              </li>
-                            ))
-                          }
-                        </ul>
+                        <MealList item={item} />
                       </>
                     }
                   </li>
@@ -79,7 +63,8 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                 <span className="add-button--item">Add 1 to order</span>
 
                 <span className="add-button--item">
-                  {`£ ${sumMenuChoose(`${(parseFloat(String(data.price)) / 100).toFixed(2)}`)}`}
+                  {/*{`£ ${sumMenuChoose(`${(parseFloat(String(data.price)) / 100).toFixed(2)}`)}`}*/}
+                  {`${(parseFloat(String(data.price)) / 100).toFixed(2)}`}
                 </span>
               </button>
             </div>
