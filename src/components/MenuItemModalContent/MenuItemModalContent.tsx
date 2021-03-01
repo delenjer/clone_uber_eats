@@ -10,7 +10,6 @@ type Props = {
 export const MenuItemModalContent = ({ menuItems }: Props) => {
   //@ts-ignore
   const [valueRadio, setValueRadio] = useState([]);
-  const [itemId, setItemId] = useState('');
   const { data } = menuItems;
 
   const sumMenuChoose = (initialPrice: string) => {
@@ -59,8 +58,6 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                                     option={option}
                                     valueRadio={valueRadio}
                                     setValueRadio={setValueRadio}
-                                    itemId={itemId}
-                                    setItemId={setItemId}
                                   />
                                 }
                               </li>

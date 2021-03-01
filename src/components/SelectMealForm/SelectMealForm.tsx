@@ -3,29 +3,11 @@ import { Input } from '../Input/Input';
 
 export const SelectMealForm: React.FC<any> = (
   {
-    item,
     option,
-    setValueRadio,
-    valueRadio,
-    setItemId,
-    itemId,
   }
 ) => (
   <form action="#" className="select-meal">
-    <label>
-      <Input
-        type={item.maxPermitted === 1 ? 'radio' : 'checkbox' }
-        value={`${(parseFloat(String(option.price)) / 100).toFixed(2)}`}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setValueRadio([...valueRadio, e.target.value]);
-          setItemId(option.uuid);
-        }}
-        checked={option.uuid === itemId}
-       className={`select-meal__input`}
-      />
-
-      {option.title}
-    </label>
+    <Input  value="1" checked className="select-meal__input" onChange={() => {}} type="radio" />
 
     <p>{`+£ ${(parseFloat(String(option.price)) / 100).toFixed(2)}`}</p>
   </form>
