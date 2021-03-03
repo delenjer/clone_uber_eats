@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { SelectMealInput } from "../SelectMealInput/SelectMealInput";
 
-export const MealList: React.FC<any> = ({ item }) => {
-  //@ts-ignore
-  const [valueRadio, setValueRadio] = useState([]);
+export const MealList: React.FC<any> = ({ item, inputValue, setInputValue, menuItems, handleChecked }) => {
   const [optionId, setOptionId] = useState('');
 
   return (
@@ -16,10 +14,14 @@ export const MealList: React.FC<any> = ({ item }) => {
                 <SelectMealInput
                   item={item}
                   option={option}
-                  valueRadio={valueRadio}
-                  setValueRadio={setValueRadio}
+                  inputValue={inputValue}
+                  setInputValue={setInputValue}
                   optionId={optionId}
                   setOptionId={setOptionId}
+                  menuItems={menuItems}
+                  handleChecked={handleChecked}
+                  // isChecked={isChecked}
+                  // setChecked={setChecked}
                 />
 
                 <p>{`+£ ${(parseFloat(String(option.price)) / 100).toFixed(2)}`}</p>

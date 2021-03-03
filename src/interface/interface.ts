@@ -13,6 +13,7 @@ export interface IAction {
   isLoading: boolean,
   num: number,
   items: IMenuItems;
+  check: boolean;
 }
 
 export interface IRestaurants {
@@ -102,22 +103,25 @@ export interface IRestaurant {
 }
 
 export interface IMenuItems {
-  data: {
-    itemDescription: string;
-    price: number;
-    sectionUuid: string;
-    subsectionUuid: string;
-    title: string;
-    uuid: string;
-    customizationsList: [{
-      maxPermitted:	number;
-      minPermitted:	number;
-      parentCustomizationOptionUuids:	any[];
-      title:	string;
-      uuid:	string;
-      displayState:	string;
-      options: any[];
-    }];
-    imageUrl: string;
-  }
+  menuItems: {
+    data: {
+      itemDescription: string;
+      price: number;
+      sectionUuid: string;
+      subsectionUuid: string;
+      title: string;
+      uuid: string;
+      customizationsList: [{
+        maxPermitted:	number;
+        minPermitted:	number;
+        parentCustomizationOptionUuids:	any[];
+        title:	string;
+        uuid:	string;
+        displayState:	string;
+        options: any[];
+      }];
+      imageUrl: string;
+    },
+  },
+  isChecked: boolean;
 }

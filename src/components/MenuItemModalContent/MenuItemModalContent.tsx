@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { IMenuItems } from '../../interface/interface';
 import { MealList } from '../MealList/MealList';
@@ -8,14 +8,29 @@ type Props = {
 }
 
 export const MenuItemModalContent = ({ menuItems }: Props) => {
-  const { data } = menuItems;
+  const [inputValue, setInputValue] = useState([]);
+  const [targetValue, setTargetValue] = useState('');
+  const { data } = menuItems.menuItems;
 
+  const sumMenuChoose = (initialPrice: string) => {
+    const sum = inputValue.reduce((acc, num) => acc + Number(num), 0);
 
-  // const sumMenuChoose = (initialPrice: string) => {
-  //   const sum = valueRadio.reduce((acc, num) => acc + Number(num), 0);
-  //
-  //   return (sum + Number(initialPrice)).toFixed(2);
-  // }
+    return (sum + Number(initialPrice)).toFixed(2);
+  }
+
+  const handleChecked = (e: any) => {
+    // console.log(e.target.value);
+    // console.log(e.target.checked);
+    setTargetValue(e.target.value);
+
+    if(e.target.checked === false) {
+      setInputValue(inputValue.filter(item => item !== targetValue));
+    }
+  }
+
+  console.log(targetValue);
+
+  console.log(inputValue);
 
   return (
     <div className="menu-modal">
@@ -47,7 +62,13 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                           </p>
                         </div>
 
-                        <MealList item={item} />
+                        <MealList
+                          item={item}
+                          inputValue={inputValue}
+                          setInputValue={setInputValue}
+                          menuItems={menuItems}
+                          handleChecked={handleChecked}
+                        />
                       </>
                     }
                   </li>
@@ -63,8 +84,8 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                 <span className="add-button--item">Add 1 to order</span>
 
                 <span className="add-button--item">
-                  {/*{`£ ${sumMenuChoose(`${(parseFloat(String(data.price)) / 100).toFixed(2)}`)}`}*/}
-                  {`${(parseFloat(String(data.price)) / 100).toFixed(2)}`}
+                  {`£ ${sumMenuChoose(`${(parseFloat(String(data.price)) / 100).toFixed(2)}`)}`}
+                  {/*{`${(parseFloat(String(data.price)) / 100).toFixed(2)}`}*/}
                 </span>
               </button>
             </div>
