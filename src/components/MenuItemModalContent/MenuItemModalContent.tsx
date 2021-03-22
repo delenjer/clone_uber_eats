@@ -8,29 +8,47 @@ type Props = {
 }
 
 export const MenuItemModalContent = ({ menuItems }: Props) => {
-  const [inputValue, setInputValue] = useState([]);
-  const [targetValue, setTargetValue] = useState('');
+  //@ts-ignore
+  const [inputRadioValue, setRadioValue] = useState({});
+  //@ts-ignore
+  const [inputCheckboxValue, setCheckboxValue] = useState<string[] | any>([]);
   const { data } = menuItems.menuItems;
 
   const sumMenuChoose = (initialPrice: string) => {
-    const sum = inputValue.reduce((acc, num) => acc + Number(num), 0);
+    const radioValue = Object.values(inputRadioValue).map((item: any) => item.value);
+    const checkboxValue = inputCheckboxValue.map((item: any) => item.value);
+    const allPrice = radioValue.concat(checkboxValue);
+    const sum = allPrice.reduce((acc, num) => acc + Number(num), 0);
 
     return (sum + Number(initialPrice)).toFixed(2);
   }
 
-  const handleChecked = (e: any) => {
-    // console.log(e.target.value);
-    // console.log(e.target.checked);
-    setTargetValue(e.target.value);
+  const handleCheckedCheckbox = (e: { target: HTMLInputElement; }, i: number) => {
+    const { value } = e.target;
 
-    if(e.target.checked === false) {
-      setInputValue(inputValue.filter(item => item !== targetValue));
+    if(!e.target.checked) {
+      setCheckboxValue(inputCheckboxValue.filter((item: any) => item.id !== i));
+    } else if(e.target.checked) {
+      setCheckboxValue([
+        ...inputCheckboxValue,
+        {
+          value,
+          id: i,
+        }
+      ]);
     }
   }
 
-  console.log(targetValue);
+  const handleCheckedRadio = (id:string, value:string) => {
+    setRadioValue({
+      ...inputRadioValue,
+      [id]: {
+        value,
+      }
+    });
+  }
 
-  console.log(inputValue);
+  //console.log(inputCheckboxValue);
 
   return (
     <div className="menu-modal">
@@ -64,10 +82,9 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
 
                         <MealList
                           item={item}
-                          inputValue={inputValue}
-                          setInputValue={setInputValue}
                           menuItems={menuItems}
-                          handleChecked={handleChecked}
+                          handleCheckedCheckbox={handleCheckedCheckbox}
+                          handleCheckedRadio={handleCheckedRadio}
                         />
                       </>
                     }
@@ -85,7 +102,6 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
 
                 <span className="add-button--item">
                   {`£ ${sumMenuChoose(`${(parseFloat(String(data.price)) / 100).toFixed(2)}`)}`}
-                  {/*{`${(parseFloat(String(data.price)) / 100).toFixed(2)}`}*/}
                 </span>
               </button>
             </div>
