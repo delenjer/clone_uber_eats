@@ -1,9 +1,9 @@
 import { IMenuItems, IAction } from "../../interface/interface";
-import { SET_MENU_ITEMS, SET_CHECKED_ITEMS } from './action';
+import { SET_MENU_ITEMS, SET_ID_ITEMS } from './action';
 
 const initialState = {
   menuItems: {},
-  isChecked: false,
+  id: '',
 };
 
 export const getMenuItems = (state: IMenuItems) => state;
@@ -16,10 +16,10 @@ const restaurantMenuItemsReducer = (state = initialState, action: IAction) => {
         menuItems: action.items,
       };
 
-    case SET_CHECKED_ITEMS:
+    case SET_ID_ITEMS:
       return {
         ...state,
-        isChecked: action.check,
+        id: action.id,
       };
 
     default:

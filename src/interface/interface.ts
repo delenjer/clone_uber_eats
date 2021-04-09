@@ -13,7 +13,7 @@ export interface IAction {
   isLoading: boolean,
   num: number,
   items: IMenuItems;
-  check: boolean;
+  id: string;
 }
 
 export interface IRestaurants {
@@ -124,4 +124,22 @@ export interface IMenuItems {
     },
   },
   isChecked: boolean;
+}
+
+export interface matchI {
+  isExact: boolean;
+  params: {
+    uuid: string,
+  };
+  path: string;
+  url: string;
+}
+
+export interface historyI {
+  goBack: () => void,
+  location: {
+    hash: string,
+    pathname: string,
+    search: string,
+  }
 }

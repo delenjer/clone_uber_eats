@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { IMenuItems } from '../../interface/interface';
 import { MealList } from '../MealList/MealList';
