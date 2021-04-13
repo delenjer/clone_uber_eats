@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { ModalBody } from './ModalBody';
 import { loadingMenuItems } from '../../store/thunk/thunk';
 import { MenuItemModalContent } from "../MenuItemModalContent/MenuItemModalContent";
-import {IState} from "../../interface/interface";
+import { IState } from "../../interface/interface";
 import * as selectors from "../../store/store";
 import { matchI, historyI } from '../../interface/interface';
 

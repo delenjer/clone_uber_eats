@@ -9,7 +9,24 @@ import restaurantsReducer, *as selectorsRestaurants from './restaurantsReducer/i
 import loadingRestaurantsReducer, *as selectorsLoadingRestaurants from './loadingRestaurantsReducer/index';
 import restaurantPageReducer, *as selectorsRestaurantPageReducer from './restaurantPageReducer/index';
 import restaurantMenuItemsReducer, *as selectorsMenuItems from './restaurantMenuItemsReducer/index';
+import locationRestaurants, *as selectorsLocationRestaurants from './locationReducer/index';
 
+export const getLocationOptions = (state: IState) => {
+  const dataLocation = selectorsLocationRestaurants.locationRestaurants(state.locationRestaurants);
+  const { location } = dataLocation;
+  const { data } = location;
+
+  if(!data) {
+    return [];
+  }
+
+  const { locationsMap } = data;
+
+  return Object.values(locationsMap);
+}
+
+export const getLocationRestaurants = (state: IState) => selectorsLocationRestaurants
+  .locationRestaurants(state.locationRestaurants);
 export const getRestaurants = (state: IState) => selectorsRestaurants.getRestaurants(state.restaurants);
 const getRestaurant = (state: IState) => selectorsRestaurantPageReducer.getRestaurant(state.restaurant);
 export const isLoadingRestaurants = (state: IState) => selectorsLoadingRestaurants
@@ -48,6 +65,7 @@ const rootReducer = combineReducers({
   isLoadingRestaurants: loadingRestaurantsReducer,
   restaurant: restaurantPageReducer,
   menuItems: restaurantMenuItemsReducer,
+  locationRestaurants: locationRestaurants,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(
