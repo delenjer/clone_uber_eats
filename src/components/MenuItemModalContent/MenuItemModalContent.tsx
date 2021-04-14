@@ -8,29 +8,40 @@ type Props = {
 }
 
 export const MenuItemModalContent = ({ menuItems }: Props) => {
-  const [inputValue, setInputValue] = useState([]);
+  const [inputRadioValue, setInputRadioValue] = useState({});
+  //@ts-ignore
   const [targetValue, setTargetValue] = useState('');
   const { data } = menuItems.menuItems;
 
+  console.log(inputRadioValue);
+
   const sumMenuChoose = (initialPrice: string) => {
-    const sum = inputValue.reduce((acc, num) => acc + Number(num), 0);
+    const num = Object.values(inputRadioValue);
+
+    const sum:any = num.reduce((acc:any, num) => acc + Number(num), 0);
 
     return (sum + Number(initialPrice)).toFixed(2);
   }
 
+  //@ts-ignore
   const handleChecked = (e: any) => {
     // console.log(e.target.value);
     // console.log(e.target.checked);
     setTargetValue(e.target.value);
 
     if(e.target.checked === false) {
-      setInputValue(inputValue.filter(item => item !== targetValue));
+      //setInputRadioValue(inputRadioValue.filter(item => item !== targetValue));
     }
   }
 
-  console.log(targetValue);
-
-  console.log(inputValue);
+  const handleRadioInput = (value: string, id: string) => {
+    setInputRadioValue({
+      ...inputRadioValue,
+      [id]: {
+        value,
+      },
+    });
+  }
 
   return (
     <div className="menu-modal">
@@ -64,10 +75,11 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
 
                         <MealList
                           item={item}
-                          inputValue={inputValue}
-                          setInputValue={setInputValue}
+                          inputRadioValue={inputRadioValue}
+                          setInputRadioValue={setInputRadioValue}
                           menuItems={menuItems}
                           handleChecked={handleChecked}
+                          handleRadioInput={handleRadioInput}
                         />
                       </>
                     }

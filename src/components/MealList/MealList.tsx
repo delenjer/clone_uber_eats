@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import { SelectMealInput } from "../SelectMealInput/SelectMealInput";
 
-export const MealList: React.FC<any> = ({ item, inputValue, setInputValue, menuItems, handleChecked }) => {
+export const MealList: React.FC<any> = (
+  {
+    item,
+    inputRadioValue,
+    setInputRadioValue,
+    menuItems,
+    handleChecked,
+    handleRadioInput,
+  }
+) => {
   const [optionId, setOptionId] = useState('');
 
   return (
@@ -14,12 +23,13 @@ export const MealList: React.FC<any> = ({ item, inputValue, setInputValue, menuI
                 <SelectMealInput
                   item={item}
                   option={option}
-                  inputValue={inputValue}
-                  setInputValue={setInputValue}
+                  inputRadioValue={inputRadioValue}
+                  setInputRadioValue={setInputRadioValue}
                   optionId={optionId}
                   setOptionId={setOptionId}
                   menuItems={menuItems}
                   handleChecked={handleChecked}
+                  handleRadioInput={handleRadioInput}
                   // isChecked={isChecked}
                   // setChecked={setChecked}
                 />

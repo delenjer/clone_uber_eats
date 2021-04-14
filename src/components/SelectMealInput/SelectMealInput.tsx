@@ -6,8 +6,9 @@ export const SelectMealInput: React.FC<any> = (
   {
     item,
     option,
-    inputValue,
-    setInputValue,
+    //inputRadioValue,
+    //setInputRadioValue,
+    handleRadioInput,
     optionId,
     setOptionId,
     handleChecked,
@@ -24,7 +25,7 @@ export const SelectMealInput: React.FC<any> = (
             checked={optionId === option.uuid}
             className="select-meal__input"
             onChange={(e: { target: { value: string; }; }) => {
-              setInputValue([...inputValue, e.target.value]);
+              handleRadioInput(e.target.value, item.uuid);
               setOptionId(option.uuid);
             }}
           />
@@ -39,7 +40,7 @@ export const SelectMealInput: React.FC<any> = (
             value={`${(parseFloat(String(option.price)) / 100).toFixed(2)}`}
             className="select-meal__input"
             onChange={(e: { target: { value: string; }; }) => {
-              setInputValue([...inputValue, e.target.value]);
+              //setInputValue([...inputValue, e.target.value]);
               setOptionId(option.uuid);
               handleChecked(e);
             }}
