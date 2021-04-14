@@ -4,18 +4,22 @@ import { setRestaurant } from '../restaurantPageReducer/action';
 import { setMenuItems } from '../restaurantMenuItemsReducer/action';
 import { setLocationRestaurants } from '../locationReducer/action';
 import {
-  getRestaurants,
-  getRestaurant,
+  getLocationRestaurants,
   getMenuItems,
-  getLocationRestaurants
+  getRestaurant,
+  getRestaurants
 } from '../../api/api';
 
 export const loadingLocation = () => {
   return (dispatch: (arg: { type: string }) => void) => {
     getLocationRestaurants().then(async data => {
       dispatch(await setLocationRestaurants(data));
-    })
+    });
   }
+}
+
+export const loadingLocationsId = async () => {
+  return await getLocationRestaurants().then(data => data);
 }
 
 export const loadingRestaurants = (id:string) => {

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-//@ts-ignore
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { loadingLocation } from '../../store/thunk/thunk';
 import { IState } from "../../interface/interface";
@@ -10,10 +9,11 @@ import { setIdLocation } from '../../store/locationReducer/action';
 
 export const LocationRestaurants = () => {
   const getLocationOptions = useSelector((state: IState) => selectors.getLocationOptions(state));
-  //@ts-ignore
-  const getLocationRestaurants:any = useSelector((state: IState) => selectors.getLocationRestaurants(state));
+  const getLocationRestaurants = useSelector((state: IState) => selectors.getLocationRestaurants(state));
+  const { id } = getLocationRestaurants;
   const dispatch = useDispatch();
   const history = useHistory();
+  const locationId = localStorage.getItem('locationId') || '' ;
 
   useEffect(() => {
     dispatch(loadingLocation());
@@ -26,17 +26,14 @@ export const LocationRestaurants = () => {
 
     dispatch(setIdLocation(value));
     history.push('/');
-
-    localStorage.setItem('value', value);
+    localStorage.setItem('locationId', value);
   }
-
-  // console.log(getStorageValue + ' storage');
 
   return (
     <select
       name="location"
       className="delivery-info location"
-      //@ts-ignore
+      value={!locationId ? id : locationId}
       onChange={(e) => handleSelected(e.target.value)}
     >
       {

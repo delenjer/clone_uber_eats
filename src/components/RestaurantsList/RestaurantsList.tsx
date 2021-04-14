@@ -21,10 +21,15 @@ export const RestaurantsList: React.FC = () => {
   const { initItems, addedItems } = restaurantsOptions;
   let currItems = initItems + addedItems;
   const restaurants = [...restaurantsData].slice(0, currItems);
+  const locationId = localStorage.getItem('locationId') || '' ;
 
   useEffect(() => {
-    dispatch(loadingRestaurants(id));
-  }, [id]);
+    if(locationId === null || locationId === '') {
+      dispatch(loadingRestaurants(id));
+    } else {
+      dispatch(loadingRestaurants(locationId));
+    }
+  }, [id, locationId]);
 
   const fetchMoreData = () => {
     if (restaurants.length >= restaurantsData.length) {
