@@ -2,12 +2,26 @@ import { setRestaurants } from '../restaurantsReducer/action';
 import { setLoadingRestaurants } from '../loadingRestaurantsReducer/action';
 import { setRestaurant } from '../restaurantPageReducer/action';
 import { setMenuItems } from '../restaurantMenuItemsReducer/action';
-import { getRestaurants, getRestaurant, getMenuItems } from '../../api/api';
+import { setLocationRestaurants } from '../locationReducer/action';
+import {
+  getRestaurants,
+  getRestaurant,
+  getMenuItems,
+  getLocationRestaurants
+} from '../../api/api';
 
-export const loadingRestaurants = () => {
+export const loadingLocation = () => {
+  return (dispatch: (arg: { type: string }) => void) => {
+    getLocationRestaurants().then(async data => {
+      dispatch(await setLocationRestaurants(data));
+    })
+  }
+}
+
+export const loadingRestaurants = (id:string) => {
   return (dispatch: (arg: { type: string }) => void) => {
     dispatch(setLoadingRestaurants(true));
-    getRestaurants().then(async data => {
+    getRestaurants(id).then(async data => {
       dispatch(await setRestaurants(data));
 
       dispatch(setLoadingRestaurants(false));
@@ -33,4 +47,3 @@ export const loadingMenuItems = (uuid: string) => {
     })
   }
 }
-

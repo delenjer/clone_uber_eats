@@ -6,22 +6,12 @@ import { IState } from '../../interface/interface';
 import { getRestaurantMemo } from '../../store/store';
 import { loadingRestaurant } from '../../store/thunk/thunk';
 import { RestaurantList } from "../RestaurantList/RestaurantList";
-
-type matchProps = {
-  isExact: boolean;
-  params: {
-    uuid: string,
-  };
-  path: string;
-  url: string;
-}
+import { matchI } from '../../interface/interface';
 
 export const RestaurantPage:React.FC = () => {
-  const match:matchProps = useRouteMatch();
+  const match:matchI = useRouteMatch();
   const dispatch = useDispatch();
   const restaurant = useSelector((state: IState) => getRestaurantMemo(state));
-
-
   const { heroImageUrls, title, categories, location }: any = restaurant && restaurant;
 
   useEffect(() => {

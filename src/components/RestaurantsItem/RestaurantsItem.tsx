@@ -17,7 +17,12 @@ export const RestaurantsItem = ({ restaurant }: Props) => {
 
   return (
     <li className="restaurants__item">
-      <Link to={`/restaurant-page/${restaurant.uuid}`} className="restaurants__link">
+      <Link
+        to={{
+          pathname: `/restaurant-page/${restaurant.uuid}`,
+        }}
+        className="restaurants__link"
+      >
         <div className="restaurants__img-box">
           <img
             src={restaurant.heroImageUrl}

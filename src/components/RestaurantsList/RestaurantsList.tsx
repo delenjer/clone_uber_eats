@@ -16,13 +16,15 @@ export const RestaurantsList: React.FC = () => {
   const restaurantsData = useSelector((state: IState) => getRestaurantsMemo(state));
   const restaurantsOptions = useSelector((state: IState) => selectors.getRestaurants(state));
   const isLoading = useSelector((state: IState) => selectors.isLoadingRestaurants(state));
+  const getLocationRestaurants = useSelector((state: IState) => selectors.getLocationRestaurants(state));
+  const { id } = getLocationRestaurants;
   const { initItems, addedItems } = restaurantsOptions;
   let currItems = initItems + addedItems;
   const restaurants = [...restaurantsData].slice(0, currItems);
 
   useEffect(() => {
-    dispatch(loadingRestaurants());
-  }, []);
+    dispatch(loadingRestaurants(id));
+  }, [id]);
 
   const fetchMoreData = () => {
     if (restaurants.length >= restaurantsData.length) {

@@ -4,6 +4,7 @@ export interface IState {
   isLoadingRestaurants: boolean;
   restaurant: IRestaurant;
   menuItems: IMenuItems;
+  locationRestaurants: any;
 }
 
 export interface IAction {
@@ -13,7 +14,9 @@ export interface IAction {
   isLoading: boolean,
   num: number,
   items: IMenuItems;
-  check: boolean;
+  id: string;
+  isLocation: ILocation;
+  idLocation: string;
 }
 
 export interface IRestaurants {
@@ -124,4 +127,46 @@ export interface IMenuItems {
     },
   },
   isChecked: boolean;
+}
+
+export interface matchI {
+  isExact: boolean;
+  params: {
+    uuid: string,
+  };
+  path: string;
+  url: string;
+}
+
+export interface historyI {
+  goBack: () => void,
+  location: {
+    hash: string,
+    pathname: string,
+    search: string,
+  }
+}
+
+export interface ILocation {
+  data: any;
+  location: {
+    data: {
+      locations: {
+        0: string,
+        1: string,
+      },
+      locationsMap: {
+        'f6019ddf-0413-4024-b3e6-e949d8609c56': {
+          title: string,
+          id: string,
+        },
+        'd2c8cd41-8970-416c-b05b-a4418db2b2d3': {
+          title: string,
+          id: string,
+        }
+      }
+    }
+  },
+  idLocation: string;
+  id: string;
 }
