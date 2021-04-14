@@ -10,7 +10,7 @@ export const getLocationRestaurants = () => API.get('https://mate-uber-eats-api.
 
 export const getRestaurants = (id:string) => {
   return API.get(`restaurants?location=${id}`)
-    .then(response => response.data)
+    .then(response => response.data);
 }
 
 export const getRestaurant = (uuid: string) => API.get(`restaurants/${uuid}`)

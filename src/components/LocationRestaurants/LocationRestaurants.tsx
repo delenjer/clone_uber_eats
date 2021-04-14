@@ -13,7 +13,7 @@ export const LocationRestaurants = () => {
   const { id } = getLocationRestaurants;
   const dispatch = useDispatch();
   const history = useHistory();
-  const locationId = localStorage.getItem('locationId') || '' ;
+  const locationId = localStorage.getItem('locationId') || '';
 
   useEffect(() => {
     dispatch(loadingLocation());

@@ -7,6 +7,7 @@ import { IState } from "../interface/interface";
 
 import restaurantsReducer, *as selectorsRestaurants from './restaurantsReducer/index';
 import loadingRestaurantsReducer, *as selectorsLoadingRestaurants from './loadingRestaurantsReducer/index';
+import loadingModalReducer, *as selectorsLoadingModalData from './loadingModalReducer/index';
 import restaurantPageReducer, *as selectorsRestaurantPageReducer from './restaurantPageReducer/index';
 import restaurantMenuItemsReducer, *as selectorsMenuItems from './restaurantMenuItemsReducer/index';
 import locationRestaurants, *as selectorsLocationRestaurants from './locationReducer/index';
@@ -25,13 +26,14 @@ export const getLocationOptions = (state: IState) => {
   return Object.values(locationsMap);
 }
 
-export const getLocationRestaurants = (state: IState) => selectorsLocationRestaurants
+export const getLocationRestaurants = (state:IState) => selectorsLocationRestaurants
   .locationRestaurants(state.locationRestaurants);
-export const getRestaurants = (state: IState) => selectorsRestaurants.getRestaurants(state.restaurants);
-const getRestaurant = (state: IState) => selectorsRestaurantPageReducer.getRestaurant(state.restaurant);
-export const isLoadingRestaurants = (state: IState) => selectorsLoadingRestaurants
+export const getRestaurants = (state:IState) => selectorsRestaurants.getRestaurants(state.restaurants);
+const getRestaurant = (state:IState) => selectorsRestaurantPageReducer.getRestaurant(state.restaurant);
+export const isLoadingRestaurants = (state:IState) => selectorsLoadingRestaurants
   .isLoadingRestaurants(state.isLoadingRestaurants);
-export const getMenuItems = (state: IState) => selectorsMenuItems.getMenuItems(state.menuItems);
+export const loadingModalData = (state:IState) => selectorsLoadingModalData.isLoadingModalData(state.loadingModalData);
+export const getMenuItems = (state:IState) => selectorsMenuItems.getMenuItems(state.menuItems);
 
 export const getRestaurantsMemo = createSelector(
   getRestaurants,
@@ -46,7 +48,6 @@ export const getRestaurantsMemo = createSelector(
     return feedItems.map(({ uuid }: any) => storesMap[uuid]);
   }
 );
-
 export const getRestaurantMemo = createSelector(
   getRestaurant,
   (restaurant) => {
@@ -66,6 +67,7 @@ const rootReducer = combineReducers({
   restaurant: restaurantPageReducer,
   menuItems: restaurantMenuItemsReducer,
   locationRestaurants: locationRestaurants,
+  loadingModalData: loadingModalReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(

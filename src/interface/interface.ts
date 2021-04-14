@@ -1,4 +1,5 @@
 export interface IState {
+  loadingModalData: boolean;
   data: any;
   restaurants: IRestaurants;
   isLoadingRestaurants: boolean;

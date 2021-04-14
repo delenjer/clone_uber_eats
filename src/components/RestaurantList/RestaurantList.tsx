@@ -12,19 +12,17 @@ export const RestaurantList:React.FC<any> = ({ restaurant }) => {
     }));
 
   return (
-    <>
-      <div className="main-wrapper">
-        <ul className="restaurant__list">
-          {
-            restaurantMenus && restaurantMenus.map((restaurantMenu: any) => (
-              <RestaurantItem
-                key={restaurantMenu.uuid}
-                restaurantMenu={restaurantMenu}
-              />
-            ))
-          }
-        </ul>
-      </div>
-    </>
+    <div className="main-wrapper">
+      <ul className="restaurant__list">
+        {
+          restaurantMenus && restaurantMenus.map((restaurantMenu: any) => (
+            <RestaurantItem
+              key={restaurantMenu.uuid}
+              restaurantMenu={restaurantMenu}
+            />
+          ))
+        }
+      </ul>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 export const SET_LOADING = 'SET_LOADING';
 
-export const setLoadingRestaurants = (isLoading: boolean) => ({
+export const setLoading = (isLoading: boolean) => ({
   type: SET_LOADING,
   isLoading,
 });

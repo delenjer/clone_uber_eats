@@ -21,7 +21,7 @@ export const RestaurantsList: React.FC = () => {
   const { initItems, addedItems } = restaurantsOptions;
   let currItems = initItems + addedItems;
   const restaurants = [...restaurantsData].slice(0, currItems);
-  const locationId = localStorage.getItem('locationId') || '' ;
+  const locationId = localStorage.getItem('locationId') || '';
 
   useEffect(() => {
     if(locationId === null || locationId === '') {
