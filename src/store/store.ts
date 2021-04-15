@@ -1,9 +1,9 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import { createSelector } from 'reselect';
+import {createSelector} from 'reselect';
 
-import { IState } from "../interface/interface";
+import {IState} from "../interface/interface";
 
 import restaurantsReducer, *as selectorsRestaurants from './restaurantsReducer/index';
 import loadingRestaurantsReducer, *as selectorsLoadingRestaurants from './loadingRestaurantsReducer/index';
@@ -32,20 +32,27 @@ export const getRestaurants = (state:IState) => selectorsRestaurants.getRestaura
 const getRestaurant = (state:IState) => selectorsRestaurantPageReducer.getRestaurant(state.restaurant);
 export const isLoadingRestaurants = (state:IState) => selectorsLoadingRestaurants
   .isLoadingRestaurants(state.isLoadingRestaurants);
-export const loadingModalData = (state:IState) => selectorsLoadingModalData.isLoadingModalData(state.loadingModalData);
+export const loadingModalData = (state:IState) => selectorsLoadingModalData
+  .isLoadingModalData(state.loadingModalData);
 export const getMenuItems = (state:IState) => selectorsMenuItems.getMenuItems(state.menuItems);
 
 export const getRestaurantsMemo = createSelector(
   getRestaurants,
   (restaurants) => {
     const { data } = restaurants.restaurants;
+    const { query } = restaurants;
 
     if (!data) {
       return [];
     }
 
     const { feedItems, storesMap } = data;
-    return feedItems.map(({ uuid }: any) => storesMap[uuid]);
+    const prependData = feedItems.map(({ uuid }: any) => storesMap[uuid]);
+    return prependData.filter((data: any) => {
+      const queryNormalize = query.toLowerCase();
+
+      return data.title.toLowerCase().includes(queryNormalize);
+    });
   }
 );
 export const getRestaurantMemo = createSelector(

@@ -1,6 +1,9 @@
 @import "mixins";
 
 .header {
+  position: relative;
+  z-index: 100;
+
   .header-wrapper {
     @include flex-center-space-between;
     width: 100%;
@@ -17,17 +20,9 @@
   &__services {
     flex-grow: 1;
     @include flex-center-space-between;
-
-    &--col {
-
-      //display: flex;
-      //justify-content: space-between;
-      //width: 50%;
-    }
   }
 
   &__service {
     display: flex;
-    //width: 100%;
   }
 }

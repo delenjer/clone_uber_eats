@@ -18,6 +18,7 @@ export interface IAction {
   id: string;
   isLocation: ILocation;
   idLocation: string;
+  query: string;
 }
 
 export interface IRestaurants {

@@ -24,7 +24,6 @@ export const loadingRestaurants = (id:string) => {
     dispatch(setLoading(true));
     getRestaurants(id).then(async data => {
       dispatch(await setRestaurants(data));
-
       dispatch(setLoading(false));
     })
   }
@@ -35,7 +34,6 @@ export const loadingRestaurant = (uuid: string) => {
     dispatch(setLoading(true));
     getRestaurant(uuid).then(async data => {
       dispatch(await setRestaurant(data));
-
       dispatch(setLoading(false));
     })
   }

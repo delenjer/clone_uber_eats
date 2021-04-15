@@ -5,6 +5,7 @@ import { MealList } from '../MealList/MealList';
 import {useSelector} from "react-redux";
 import * as selectors from "../../store/store";
 import { Spinner } from "../Spinner/Spinner";
+import { roundingNumbers, sumMenu } from '../../helper/helper';
 
 type Props = {
   menuItems: IMenuItems;
@@ -17,12 +18,7 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
   const { data } = menuItems.menuItems;
 
   const sumMenuChoose = (initialPrice: string) => {
-    const radioValue = Object.values(inputRadioValue).map((item: any) => item.value);
-    const checkboxValue = inputCheckboxValue.map((item: any) => item.value);
-    const allPrice = radioValue.concat(checkboxValue);
-    const sum = allPrice.reduce((acc, num) => acc + Number(num), 0);
-
-    return (sum + Number(initialPrice)).toFixed(2);
+    return sumMenu(initialPrice, inputRadioValue, inputCheckboxValue);
   }
 
   const handleCheckedCheckbox = (e: { target: HTMLInputElement; }, i: number) => {
@@ -104,7 +100,7 @@ export const MenuItemModalContent = ({ menuItems }: Props) => {
                   <span className="add-button--item">Add 1 to order</span>
 
                   <span className="add-button--item">
-                  {`£ ${sumMenuChoose(`${(parseFloat(String(data.price)) / 100).toFixed(2)}`)}`}
+                  {`£ ${sumMenuChoose(`${roundingNumbers(data.price)}`)}`}
                 </span>
                 </button>
               </div>

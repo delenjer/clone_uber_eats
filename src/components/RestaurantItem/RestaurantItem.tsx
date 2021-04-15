@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {setMenuItemsId} from "../../store/restaurantMenuItemsReducer/action";
+
+import { setMenuItemsId } from "../../store/restaurantMenuItemsReducer/action";
+import { roundingNumbers } from '../../helper/helper';
 
 export const RestaurantItem:React.FC<any> = ({ restaurantMenu }) => {
   const match = useRouteMatch();
@@ -30,7 +32,7 @@ export const RestaurantItem:React.FC<any> = ({ restaurantMenu }) => {
                 </p>
 
                 <p className="card__price">
-                  {`£ ${(parseFloat(itemUuid.price) / 100).toFixed(2)}`}
+                  {`£ ${roundingNumbers(itemUuid.price)}`}
                 </p>
               </div>
 

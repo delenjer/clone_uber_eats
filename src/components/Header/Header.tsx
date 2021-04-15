@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import { LocationRestaurants } from "../LocationRestaurants/LocationRestaurants";
+import { SearchRestaurant } from "../SearchRestaurant/SearchRestaurant";
 
 export const Header = () => (
   <header className="header">
@@ -39,15 +40,7 @@ export const Header = () => (
 
         <div className="header__services--col">
           <div className="header__service">
-            <form className="search">
-              <input name="search" id="search" className="search__input" type="text" placeholder="search"/>
-
-              <label htmlFor="search" className="search__title">
-                <img src="./images/search.svg" alt="Logo" />
-
-                <span className="search__title--text">Search</span>
-              </label>
-            </form>
+            <SearchRestaurant />
 
             <div className="sign-box">
               <button type="button" className="sign-btn btn">Sign in</button>

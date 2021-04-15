@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { SelectMealInput } from "../SelectMealInput/SelectMealInput";
 
+import { roundingNumbers } from '../../helper/helper';
+
 export const MealList: React.FC<any> = (
   {
     item,
@@ -29,7 +31,7 @@ export const MealList: React.FC<any> = (
                   handleCheckedRadio={handleCheckedRadio}
                 />
 
-                <p>{`+£ ${(parseFloat(String(option.price)) / 100).toFixed(2)}`}</p>
+                <p>{`+£ ${roundingNumbers(option.price)}`}</p>
               </div>
             }
           </li>

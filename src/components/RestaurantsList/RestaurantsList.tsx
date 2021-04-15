@@ -31,6 +31,14 @@ export const RestaurantsList: React.FC = () => {
     }
   }, [id, locationId]);
 
+  useEffect(() => {
+    if (restaurants.length >= restaurantsData.length) {
+      setHasMore(false);
+    } else {
+      setHasMore(true);
+    }
+  }, [restaurants.length, restaurantsData.length]);
+
   const fetchMoreData = () => {
     if (restaurants.length >= restaurantsData.length) {
       setHasMore(false);
@@ -48,29 +56,37 @@ export const RestaurantsList: React.FC = () => {
         isLoading ? (
           <Spinner />
         ) : (
-          <div className="main-wrapper">
-            <InfiniteScroll
-              dataLength={restaurants.length}
-              next={fetchMoreData}
-              hasMore={hasMore}
-              loader={<div className="loader">Loading...</div>}
-              endMessage={
-                <p style={{ textAlign: "center" }}>
-                  <b>Yay! You have seen it all</b>
-                </p>
-              }
-            >
-              <section className="restaurants">
-                <ul className="restaurants__list">
-                  {
-                    restaurants.map((restaurant: IRestaurants) => (
-                      <RestaurantsItem key={restaurant.uuid} restaurant={restaurant} />
-                    ))
-                  }
-                </ul>
-              </section>
-            </InfiniteScroll>
-          </div>
+          <>
+            {
+              !restaurants.length ? (
+                <p className="error-text">NO RESTAURANTS</p>
+              ) : (
+                <div className="main-wrapper">
+                  <InfiniteScroll
+                    dataLength={restaurants.length}
+                    next={fetchMoreData}
+                    hasMore={hasMore}
+                    loader={<div className="loader">Loading...</div>}
+                    endMessage={
+                      <p style={{ textAlign: "center" }}>
+                        <b>Yay! You have seen it all</b>
+                      </p>
+                    }
+                  >
+                    <section className="restaurants">
+                      <ul className="restaurants__list">
+                        {
+                          restaurants.map((restaurant: IRestaurants) => (
+                            <RestaurantsItem key={restaurant.uuid} restaurant={restaurant} />
+                          ))
+                        }
+                      </ul>
+                    </section>
+                  </InfiniteScroll>
+                </div>
+              )
+            }
+          </>
         )
       }
     </>
