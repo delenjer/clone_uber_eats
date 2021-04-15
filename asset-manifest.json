@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/clone_uber_eats/static/css/main.66333d86.chunk.css",
-    "main.js": "/clone_uber_eats/static/js/main.044d1105.chunk.js",
-    "main.js.map": "/clone_uber_eats/static/js/main.044d1105.chunk.js.map",
+    "main.css": "/clone_uber_eats/static/css/main.832837b7.chunk.css",
+    "main.js": "/clone_uber_eats/static/js/main.5c96dde3.chunk.js",
+    "main.js.map": "/clone_uber_eats/static/js/main.5c96dde3.chunk.js.map",
     "runtime~main.js": "/clone_uber_eats/static/js/runtime~main.f703a0b4.js",
     "runtime~main.js.map": "/clone_uber_eats/static/js/runtime~main.f703a0b4.js.map",
-    "static/js/2.c4aa6904.chunk.js": "/clone_uber_eats/static/js/2.c4aa6904.chunk.js",
-    "static/js/2.c4aa6904.chunk.js.map": "/clone_uber_eats/static/js/2.c4aa6904.chunk.js.map",
+    "static/js/2.73169e53.chunk.js": "/clone_uber_eats/static/js/2.73169e53.chunk.js",
+    "static/js/2.73169e53.chunk.js.map": "/clone_uber_eats/static/js/2.73169e53.chunk.js.map",
     "index.html": "/clone_uber_eats/index.html",
-    "precache-manifest.dfca95b869f9479c52c12d1e9489f56f.js": "/clone_uber_eats/precache-manifest.dfca95b869f9479c52c12d1e9489f56f.js",
+    "precache-manifest.7aa47340b792200a1b310327c2dbbecd.js": "/clone_uber_eats/precache-manifest.7aa47340b792200a1b310327c2dbbecd.js",
     "service-worker.js": "/clone_uber_eats/service-worker.js",
-    "static/css/main.66333d86.chunk.css.map": "/clone_uber_eats/static/css/main.66333d86.chunk.css.map",
+    "static/css/main.832837b7.chunk.css.map": "/clone_uber_eats/static/css/main.832837b7.chunk.css.map",
     "static/media/App.scss": "/clone_uber_eats/static/media/icomoon.9078b095.svg"
   }
 }
